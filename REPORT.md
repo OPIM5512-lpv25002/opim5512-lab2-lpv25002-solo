@@ -1,36 +1,25 @@
 # Lab 2 report - explaining our demand model
 
-**Authors:** _replace this line with your name_
-<!-- ^ You and your partner BOTH edit THIS ONE LINE with your name, each on your own branch.
-     When the second pull request merges you'll get a merge conflict right here - that's on
-     purpose. Resolve it by keeping BOTH names. Everything else below is in separate sections,
-     so those merge cleanly. -->
-
-*Two people, one model, two kinds of explanation. Fill in YOUR section; leave your partner's alone.
-Replace every `=>` with a real sentence; every number gets a unit.*
+**Authors:** Trishan Kundu
 
 ## Global - what the model leans on overall (Partner A)
 ![built-in importances](images/importances_builtin.png)
 
-=> One sentence: which feature does the model lean on most, by magnitude alone?
+The model leans most heavily on hour of day, followed by dew point and air temperature.
 
 ![SHAP beeswarm](images/shap_global.png)
 
-=> One sentence: which feature is #1, and does a HIGH value push demand up or down?
+Hour of day is also the #1 feature in the SHAP explanation, and higher hour-of-day values generally push predicted electricity demand upward.
 
 ## Local - one hour explained (Partner B)
 ![predicted vs actual](images/predicted_vs_actual.png)
 
-=> One sentence: does it track the diagonal? roughly how far off is a typical hour?
+The predictions generally track the actual-demand diagonal well, with a test-set R² of 0.83 and a typical prediction error of about 662 MW.
 
 ![SHAP waterfall for the peak hour](images/shap_local.png)
 
-=> One sentence: for the peak hour, what pushed the prediction up, and what pulled it down?
-
-## Combined (both, optional)
-![SHAP dependence](images/shap_dependence.png)
-
-=> One sentence tying Lab 1 to Lab 2: *"it's the clock as much as the thermometer"* - in your words.
+For the peak test hour at 17:00 on August 18, 2026, hour of day and the 85°F temperature pushed the prediction strongly upward, while dew point and wind speed pulled it slightly downward; the actual demand for that hour was 18,585 MW.
 
 ## What this explanation can't tell us
-=> One honest sentence. (SHAP explains THIS model, not the real world; one summer, one region; correlation, not proof.)
+
+SHAP explains how this model used the available features to make its predictions, but it does not prove that those features physically caused changes in electricity demand.
